@@ -13,7 +13,7 @@ export default function Header() {
         <Link className='group hidden md:inline-flex' href={'/'}>
           <Logo />
         </Link>
-        <div className='bg-mint/85 backdrop-blur-md px-3 py-4 rounded-lg flex gap-8 items-center w-full md:w-fit justify-center'>
+        <div className='bg-mint/85 backdrop-blur-md px-3 py-4 rounded-lg flex justify-between md:gap-8 items-center w-full md:w-fit md:justify-center'>
           <HeaderLink href='/' additionalClasses='md:hidden'>
             <IoHome className='w-6 h-6' />
             <p className='text-xs md:text-sm'>Home</p>
