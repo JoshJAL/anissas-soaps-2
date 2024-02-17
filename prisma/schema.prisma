@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Inventory {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  price     String
+  hidden    Boolean  @default(false)
+}
+
+model InventoryImages {
+  id          Int      @id @default(autoincrement())
+  inventoryId Int
+  url         String
+  createdAt   DateTime @default(now())
+  main        Boolean  @default(false)
+
+  @@index([inventoryId])
+}
