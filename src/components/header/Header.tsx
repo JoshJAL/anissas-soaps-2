@@ -33,7 +33,7 @@ export default function Header() {
             <p className='text-xs md:text-sm md:inline-flex hidden'>Our Story</p>
             <p className='text-xs md:text-sm md:hidden'>Story</p>
           </HeaderLink>
-          <HeaderLink href='/our-story'>
+          <HeaderLink href='/shop'>
             <IoStorefront className='w-6 h-6' />
             <p className='text-xs md:text-sm'>Shop</p>
           </HeaderLink>
