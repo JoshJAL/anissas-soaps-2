@@ -3,38 +3,40 @@ import Link from 'next/link';
 import { FaBookOpen, FaSoap } from 'react-icons/fa';
 import { IoHome, IoMail, IoStorefront } from 'react-icons/io5';
 import { CartButton, CartButtonMobile } from './CartButton';
+import CartFlyout from '@/app/cart/CartFlyout';
 
 const oleo = Oleo_Script_Swash_Caps({ weight: '400', subsets: ['latin'] });
 
 export default function Header() {
   return (
-    <header className='w-full h-fit fixed md:top-0 bottom-0 p-5 z-50'>
-      <nav className='w-full max-w-7xl mx-auto flex items-center justify-between'>
+    <header className='fixed bottom-0 z-50 h-fit w-full p-5 md:top-0'>
+      <CartFlyout />
+      <nav className='mx-auto flex w-full max-w-7xl items-center justify-between'>
         <Link className='group hidden md:inline-flex' href={'/'}>
           <Logo />
         </Link>
-        <div className='bg-mint/85 backdrop-blur-md px-3 py-4 rounded-lg flex justify-between md:gap-8 items-center w-full md:w-fit md:justify-center'>
+        <div className='bg-mint/85 flex w-full items-center justify-between rounded-lg px-3 py-4 backdrop-blur-md md:w-fit md:justify-center md:gap-8'>
           <HeaderLink href='/' additionalClasses='md:hidden'>
-            <IoHome className='w-6 h-6' />
+            <IoHome className='h-6 w-6' />
             <p className='text-xs md:text-sm'>Home</p>
           </HeaderLink>
           <HeaderLink href='/contact'>
-            <IoMail className='w-6 h-6' />
+            <IoMail className='h-6 w-6' />
             <p className='text-xs md:text-sm'>Contact</p>
           </HeaderLink>
           <HeaderLink href='/custom'>
-            <FaSoap className='w-6 h-6' />
-            <p className='text-xs md:text-sm md:inline-flex hidden'>Custom Soaps</p>
-            <p className='text-xs md:text-sm md:hidden'>Custom</p>
+            <FaSoap className='h-6 w-6' />
+            <p className='hidden text-xs md:inline-flex md:text-sm'>Custom Soaps</p>
+            <p className='text-xs md:hidden md:text-sm'>Custom</p>
           </HeaderLink>
           <HeaderLink href='/our-story'>
-            <FaBookOpen className='w-6 h-6' />
+            <FaBookOpen className='h-6 w-6' />
 
-            <p className='text-xs md:text-sm md:inline-flex hidden'>Our Story</p>
-            <p className='text-xs md:text-sm md:hidden'>Story</p>
+            <p className='hidden text-xs md:inline-flex md:text-sm'>Our Story</p>
+            <p className='text-xs md:hidden md:text-sm'>Story</p>
           </HeaderLink>
           <HeaderLink href='/shop'>
-            <IoStorefront className='w-6 h-6' />
+            <IoStorefront className='h-6 w-6' />
             <p className='text-xs md:text-sm'>Shop</p>
           </HeaderLink>
           <CartButtonMobile />
@@ -55,7 +57,7 @@ function HeaderLink({ href, children, additionalClasses }: HeaderLinkProps) {
   return (
     <Link
       href={href}
-      className={`text-2xl hover:scale-110 items-center justify-center transition-all duration-200 ease-in-out flex flex-col gap-1 text-center flex-wrap ${additionalClasses}`}
+      className={`flex flex-col flex-wrap items-center justify-center gap-1 text-center text-2xl transition-all duration-200 ease-in-out hover:scale-110 ${additionalClasses}`}
     >
       {children}
     </Link>
@@ -65,7 +67,7 @@ function HeaderLink({ href, children, additionalClasses }: HeaderLinkProps) {
 function Logo() {
   return (
     <div
-      className={`rounded-full h-24 w-24 bg-white border-4 border-red-800 flex flex-col items-center justify-center text-xl group-hover:rotate-12 group-hover:scale-110 transition-all duration-200 ease-in-out ${oleo.className}`}
+      className={`flex h-24 w-24 flex-col items-center justify-center rounded-full border-4 border-red-800 bg-white text-xl transition-all duration-200 ease-in-out group-hover:rotate-12 group-hover:scale-110 ${oleo.className}`}
     >
       <p className='text-red-800'>Anissa&apos;s</p>
       <p className='text-green-800'>Soap</p>

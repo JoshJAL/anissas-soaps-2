@@ -91,10 +91,31 @@ export async function addItemToCart(cartId: string | number, item: CartItem) {
     }
     const newItems = [item, ...cartItems];
     const newCart = await prisma.cart.update({ where: { id: Number(cartId) }, data: { items: newItems } });
+    await prisma.$disconnect();
     return newCart;
   } catch (error) {
     console.error(error);
     await prisma.$disconnect();
     return null;
+  }
+}
+
+export async function removeCartItem(itemName: string, itemScent: string, cartId: string | number) {
+  try {
+    const cart = await prisma.cart.findUnique({ where: { id: Number(cartId) } });
+    const incomingCartItems = cart!.items;
+    const cartItems = incomingCartItems as unknown as CartItem[];
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].itemName === itemName && cartItems[i].itemScent === itemScent) {
+        cartItems.splice(i, 1);
+        await prisma.cart.update({ where: { id: Number(cartId) }, data: { items: cartItems } });
+        await prisma.$disconnect();
+        return true;
+      }
+    }
+  } catch (error) {
+    console.error(error);
+    await prisma.$disconnect();
+    return false;
   }
 }
