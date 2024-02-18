@@ -18,7 +18,8 @@ export async function POST(req: NextRequest) {
       price_data: {
         currency: 'usd',
         product_data: {
-          name: item.itemName
+          name: item.itemName,
+          description: item.itemScent
         },
         unit_amount: Number(item.itemPrice) * 100
       },
@@ -31,7 +32,11 @@ export async function POST(req: NextRequest) {
       line_items: lineItems,
       mode: 'payment',
       success_url: `${headersList.get('origin')}?success=true`,
-      cancel_url: `${headersList.get('origin')}?success=false`
+      cancel_url: `${headersList.get('origin')}?success=false`,
+      billing_address_collection: 'required',
+      shipping_address_collection: {
+        allowed_countries: ['US', 'CA']
+      }
     });
 
     return NextResponse.json({ status: 200, url: paymentIntent.url });
