@@ -20,8 +20,6 @@ export default async function Page() {
     items.push(itemObj);
   }
 
-  console.log(items);
-
   return (
     <div className='grid md:grid-cols-2 gap-5'>
       {items.map((item) => {
