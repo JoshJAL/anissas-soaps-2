@@ -19,10 +19,12 @@ export function CartButton() {
 }
 
 export function CartButtonMobile() {
+  const { setCartOpen } = useCartStore();
+
   return (
     <button
       type='button'
-      onClick={() => console.log('Cart clicked')}
+      onClick={() => setCartOpen(true)}
       className={`flex flex-col flex-wrap items-center justify-center gap-1 text-center text-2xl transition-all duration-200 ease-in-out hover:scale-110 md:hidden`}
     >
       <IoCart />

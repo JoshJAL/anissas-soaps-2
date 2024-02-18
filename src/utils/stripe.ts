@@ -1,3 +1,5 @@
+'use server';
+
 import Stripe from 'stripe';
 
 if (!process.env.STRIPE_TEST_SECRET_KEY) {

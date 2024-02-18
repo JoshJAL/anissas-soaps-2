@@ -9,7 +9,6 @@ import { IoClose } from 'react-icons/io5';
 import { useCartStore } from '@/utils/cartStore';
 import type { CartItem } from '@/types/cartItem';
 import { getCartById, removeCartItem } from '@/actions/prisma';
-import { loadStripe } from '@stripe/stripe-js';
 
 export default function CartFlyout() {
   const { cartOpen, setCartOpen } = useCartStore();
@@ -33,31 +32,6 @@ export default function CartFlyout() {
   cartItems.map((item) => {
     cartTotal += Number(item.itemPrice) * item.quantity;
   });
-
-  const redirectToCheckout = async () => {
-    try {
-      const stripe = await loadStripe(process.env.NEXT_PUBLIC_TEST_STRIPE_PUBLISHABLE_KEY as string);
-
-      if (!stripe) throw new Error('Stripe failed to initialize.');
-
-      const checkoutResponse = await fetch('/api/checkout_sessions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(cartItems)
-      });
-
-      const { sessionId } = await checkoutResponse.json();
-      const stripeError = await stripe.redirectToCheckout({ sessionId });
-
-      if (stripeError) {
-        console.error(stripeError);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <Transition.Root show={cartOpen} as={Fragment}>
@@ -196,8 +170,13 @@ export default function CartFlyout() {
                         <div className='mt-6'>
                           <button
                             type='button'
-                            onClick={() => {
-                              redirectToCheckout();
+                            onClick={async () => {
+                              const res = await fetch('/api/checkout-sessions', {
+                                method: 'POST',
+                                body: JSON.stringify({ cartItems })
+                              });
+                              const session = await res.json();
+                              router.push(session.url);
                             }}
                             className='flex w-full items-center justify-center rounded-md border border-transparent bg-green-800 px-6 py-3 text-base font-medium text-white shadow-sm duration-200 ease-in-out hover:bg-red-800'
                           >

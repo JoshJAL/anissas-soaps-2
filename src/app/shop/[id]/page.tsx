@@ -15,8 +15,6 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   if (!product) return <h1 className='w-full text-center text-3xl font-medium'>Product Not Found</h1>;
 
-  console.log(product);
-  console.log('images: ', images);
   const mainImage = images?.find((image) => image.main === true);
 
   images = [...images!].sort((a, b) => (a.main === b.main ? 0 : a.main ? -1 : 1));
