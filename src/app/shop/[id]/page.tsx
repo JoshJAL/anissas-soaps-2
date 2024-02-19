@@ -20,7 +20,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   images = [...images!].sort((a, b) => (a.main === b.main ? 0 : a.main ? -1 : 1));
 
   return (
-    <div className='grid w-full grid-cols-2 gap-5 text-xl'>
+    <div className='grid w-full gap-5 text-xl md:grid-cols-2'>
       {images!.length > 1 ? (
         <div className='h-full w-full max-w-[1200px]'>
           <ImageSlider images={images!} autoScroll scrollInterval={6000} />
@@ -36,6 +36,14 @@ export default async function Page({ params }: { params: { id: string } }) {
       )}
       <div className='flex flex-col gap-3'>
         <h1 className={`text-3xl font-medium ${oleo.className}`}>{product.name}</h1>
+        <p className='text-xl text-gray-600'>
+          <span className='font-bold underline underline-offset-4'>NOTICE:</span> All products are handmade, slight
+          differences/defects between items and images is to be expected! Every item is unique and made with love!
+        </p>
+        <p className='text-xl text-gray-600'>
+          All of Anissa&apos;s soaps are made with the same three ingredients (extra virgin olive oil, lye, and water)
+          every time, the only thing that changes is the scent or herbs you choose!
+        </p>
         <AddToCart mainImage={mainImage!.url} product={product} />
       </div>
     </div>

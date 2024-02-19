@@ -21,7 +21,7 @@ export default async function Home() {
   }
 
   return (
-    <article className='flex flex-col w-full gap-5'>
+    <article className='flex w-full flex-col gap-5'>
       <TestimonialSlider cards={itemCards} />
       <WhoWeAre />
     </article>
