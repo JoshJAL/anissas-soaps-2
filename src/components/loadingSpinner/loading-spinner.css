@@ -1,0 +1,43 @@
+.loader {
+  display: block;
+  position: relative;
+  height: 64px;
+  width: 280px;
+  border: 6px solid #9bcd9f;
+  border-radius: 40px;
+  box-sizing: border-box;
+  animation: balancing 1s linear infinite alternate;
+  transform-origin: center center;
+}
+.loader:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 104px;
+  height: 52px;
+  border-radius: 40px;
+  background: #991b1b;
+  animation: ballbns 1s linear infinite alternate;
+}
+@keyframes ballbns {
+  0% {
+    left: 0;
+    transform: translateX(0%);
+  }
+  100% {
+    left: 100%;
+    transform: translateX(-100%);
+  }
+}
+@keyframes balancing {
+  0% {
+    transform: rotate(-25deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(25deg);
+  }
+}
