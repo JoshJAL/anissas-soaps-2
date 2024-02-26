@@ -31,3 +31,24 @@ model Cart {
   createdAt DateTime @default(now())
   items     Json
 }
+
+model Orders {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  items      Json
+  total      String
+  address    Json
+  email      String
+  name       String
+  orderId    String   @unique
+  customerId Int
+
+  @@index([customerId])
+}
+
+model Customers {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String
+}

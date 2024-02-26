@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
       price_data: {
         currency: 'usd',
         product_data: {
-          name: item.itemName,
+          name: item.itemName + ' ' + item.itemScent,
           description: item.itemScent
         },
         unit_amount: Number(item.itemPrice) * 100
@@ -31,7 +31,10 @@ export async function POST(req: NextRequest) {
     const paymentIntent = await stripe.checkout.sessions.create({
       line_items: lineItems,
       mode: 'payment',
-      success_url: `${headersList.get('origin')}?success=true`,
+      invoice_creation: {
+        enabled: true
+      },
+      success_url: `${headersList.get('origin')}?success=true&orderId={CHECKOUT_SESSION_ID}`,
       cancel_url: `${headersList.get('origin')}?success=false`,
       billing_address_collection: 'required',
       shipping_address_collection: {

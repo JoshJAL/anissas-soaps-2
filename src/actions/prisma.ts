@@ -119,3 +119,105 @@ export async function removeCartItem(itemName: string, itemScent: string, cartId
     return false;
   }
 }
+
+export async function createOrder(
+  orderId: string,
+  customerName: string,
+  customerEmail: string,
+  address: {
+    city: string;
+    country: string;
+    line1: string;
+    line2: string | null;
+    postal_code: string;
+    state: string;
+  },
+  items: {
+    name: string;
+    quantity: number;
+  }[],
+  total: number | string,
+  customerId: number
+) {
+  total = total.toString();
+  try {
+    const order = await prisma.orders.create({
+      data: {
+        items,
+        name: customerName.trim(),
+        email: customerEmail.trim(),
+        address,
+        orderId,
+        total,
+        customerId
+      }
+    });
+    await prisma.$disconnect();
+    return true;
+  } catch (e) {
+    console.error(e);
+    await prisma.$disconnect();
+    return false;
+  }
+}
+
+export async function clearCart(cartId: string | number) {
+  cartId = Number(cartId);
+  try {
+    await prisma.cart.update({ where: { id: cartId }, data: { items: [] } });
+    await prisma.$disconnect();
+    return true;
+  } catch (e) {
+    console.error(e);
+    await prisma.$disconnect();
+    return false;
+  }
+}
+
+export async function clearAllOrders() {
+  try {
+    await prisma.orders.deleteMany();
+    await prisma.$disconnect();
+    return true;
+  } catch (e) {
+    console.error(e);
+    await prisma.$disconnect();
+    return false;
+  }
+}
+
+export async function getOrders() {
+  try {
+    const orders = await prisma.orders.findMany();
+    await prisma.$disconnect();
+    return orders;
+  } catch (e) {
+    console.error(e);
+    await prisma.$disconnect();
+    return null;
+  }
+}
+
+export async function getCustomerByEmail(email: string) {
+  try {
+    const customer = await prisma.customers.findUnique({ where: { email } });
+    await prisma.$disconnect();
+    return customer;
+  } catch (e) {
+    console.error(e);
+    await prisma.$disconnect();
+    return null;
+  }
+}
+
+export async function createCustomer(email: string, name: string) {
+  try {
+    const customer = await prisma.customers.create({ data: { email, name } });
+    await prisma.$disconnect();
+    return customer;
+  } catch (e) {
+    console.error(e);
+    await prisma.$disconnect();
+    return null;
+  }
+}

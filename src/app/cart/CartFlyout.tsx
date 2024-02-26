@@ -21,7 +21,7 @@ export default function CartFlyout() {
       const cartId = localStorage.getItem('cartId');
       if (!cartId) return setCartItems([]);
       const cart = await getCartById(cartId);
-      const cartItems = cart?.items;
+      const cartItems = cart?.items ?? ([] as CartItem[]);
       setCartItems(cartItems as unknown as CartItem[]);
     }
 
