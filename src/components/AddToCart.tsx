@@ -50,6 +50,7 @@ export default function AddToCart({ product, mainImage }: { product: Inventory; 
         return alert('There was an error adding this item to your cart, please try again');
       } else {
         localStorage.setItem('cartId', cart!.id.toString());
+        setCartOpen(true);
         setAdding(false);
       }
     } else {
