@@ -2,6 +2,7 @@ import sendConfirmationEmail from '@/actions/nodemailer';
 import { createCustomer, createOrder, getCustomerByEmail, getProductMainImage, getProducts } from '@/actions/prisma';
 import ClearCart from '@/components/ClearCart';
 import WhoWeAre from '@/components/WhoWeAre';
+import WholesaleSection from '@/components/WholesaleSection';
 import TestimonialSlider from '@/components/sliders/ItemCardSlider';
 import { ItemCard } from '@/types/itemCard';
 import { redirect } from 'next/navigation';
@@ -74,6 +75,7 @@ export default async function Home({
       <ClearCart orderComplete={searchParams.success} />
       <TestimonialSlider cards={itemCards} />
       <WhoWeAre />
+      <WholesaleSection />
     </article>
   );
 }

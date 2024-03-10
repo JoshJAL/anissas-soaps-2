@@ -1,6 +1,6 @@
 import { Oleo_Script_Swash_Caps } from 'next/font/google';
 import Link from 'next/link';
-import { FaBookOpen, FaSoap } from 'react-icons/fa';
+import { FaBookOpen, FaSoap, FaWarehouse } from 'react-icons/fa';
 import { IoHome, IoMail, IoStorefront } from 'react-icons/io5';
 import { CartButton, CartButtonMobile } from './CartButton';
 import CartFlyout from '@/app/cart/CartFlyout';
@@ -29,9 +29,12 @@ export default function Header() {
             <p className='hidden text-xs md:inline-flex md:text-sm'>Custom Soaps</p>
             <p className='text-xs md:hidden md:text-sm'>Custom</p>
           </HeaderLink>
+          <HeaderLink href='/wholesale'>
+            <FaWarehouse className='h-6 w-6' />
+            <p className='text-xs  md:text-sm'>Wholesale</p>
+          </HeaderLink>
           <HeaderLink href='/our-story'>
             <FaBookOpen className='h-6 w-6' />
-
             <p className='hidden text-xs md:inline-flex md:text-sm'>Our Story</p>
             <p className='text-xs md:hidden md:text-sm'>Story</p>
           </HeaderLink>
