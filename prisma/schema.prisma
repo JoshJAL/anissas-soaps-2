@@ -33,15 +33,16 @@ model Cart {
 }
 
 model Orders {
-  id         Int      @id @default(autoincrement())
-  createdAt  DateTime @default(now())
-  items      Json
-  total      String
-  address    Json
-  email      String
-  name       String
-  orderId    String   @unique
-  customerId Int
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  items       Json
+  total       String
+  address     Json
+  email       String
+  name        String
+  orderId     String   @unique
+  customerId  Int
+  orderStatus String   @default("Pending")
 
   @@index([customerId])
 }
@@ -51,4 +52,31 @@ model Customers {
   createdAt DateTime @default(now())
   email     String   @unique
   name      String
+}
+
+model ConactInterest {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  name      String
+  email     String
+  message   String   @db.Text
+}
+
+model CustomSoapForm {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String
+  message   String   @db.Text
+  createdAt DateTime @default(now())
+}
+
+model WholesaleInterest {
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now())
+  email        String   @unique
+  name         String
+  businessName String
+  phone        String
+  message      String   @db.Text
 }

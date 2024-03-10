@@ -221,3 +221,30 @@ export async function createCustomer(email: string, name: string) {
     return null;
   }
 }
+
+export async function createWholesaleInterest(
+  firstName: string,
+  lastName: string,
+  email: string,
+  phone: string,
+  businessName: string,
+  message: string
+) {
+  try {
+    await prisma.wholesaleInterest.create({
+      data: {
+        name: `${firstName.trim()} ${lastName.trim()}`,
+        email: email.trim().toLowerCase(),
+        phone: phone.trim(),
+        businessName: businessName.trim(),
+        message: message.trim()
+      }
+    });
+    await prisma.$disconnect();
+    return true;
+  } catch (e) {
+    console.error(e);
+    await prisma.$disconnect();
+    return false;
+  }
+}

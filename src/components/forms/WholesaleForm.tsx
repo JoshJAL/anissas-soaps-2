@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Input from '../inputs/Input';
 import TextArea from '../inputs/TextArea';
 import FormWrapper from './FormWrapper';
+import { createWholesaleInterest } from '@/actions/prisma';
 
 export default function WholesaleForm() {
   const [submitting, setSubmitting] = useState(false);
@@ -16,9 +17,34 @@ export default function WholesaleForm() {
     message: ''
   });
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log('Form submitted');
+    if (!confirm('Are you sure you want to submit?')) return;
+    setSubmitting(true);
+    const success = await createWholesaleInterest(
+      formState.firstName,
+      formState.lastName,
+      formState.email,
+      formState.phone,
+      formState.businessName,
+      formState.message
+    );
+
+    if (success) {
+      alert('Thank you for your interest! We will be in touch soon.');
+      setFormState({
+        firstName: '',
+        lastName: '',
+        businessName: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
+      setSubmitting(false);
+    } else {
+      alert('There was an error submitting your form. Please try again later.');
+      setSubmitting(false);
+    }
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
