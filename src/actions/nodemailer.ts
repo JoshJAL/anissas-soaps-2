@@ -6,8 +6,8 @@ export default function sendConfirmationEmail(customerEmail: string) {
       service: 'gmail',
 
       auth: {
-        user: 'joshuaalexanderlevine@gmail.com',
-        pass: 'vkqf xlgq ugwe hgqj'
+        user: 'anissassoaps@gmail.com',
+        pass: 'dmaz bwjf wyqi tlij'
       }
     });
 
