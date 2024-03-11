@@ -1,4 +1,4 @@
-import sendConfirmationEmail from '@/actions/nodemailer';
+import { sendConfirmationEmail } from '@/actions/nodemailer';
 import { createCustomer, createOrder, getCustomerByEmail, getProductMainImage, getProducts } from '@/actions/prisma';
 import ClearCart from '@/components/ClearCart';
 import WhoWeAre from '@/components/WhoWeAre';
@@ -49,7 +49,7 @@ export default async function Home({
     }
     const orderSuccess = await createOrder(orderId, customerName, customerEmail, address, items, total, customer!.id);
     if (orderSuccess) {
-      if (customerEmail) sendConfirmationEmail(customerEmail);
+      if (customerEmail) await sendConfirmationEmail(customerEmail);
       redirect('/?success=completed');
     }
   }

@@ -248,3 +248,26 @@ export async function createWholesaleInterest(
     return false;
   }
 }
+
+export async function createCustomForm(
+  firstName: string,
+  lastName: string,
+  email: string,
+  message: string,
+  phone: string
+) {
+  try {
+    await prisma.customSoapForm.create({
+      data: {
+        phone: phone.trim(),
+        name: `${firstName.trim()} ${lastName.trim()}`,
+        email: email.trim().toLowerCase(),
+        message: message.trim()
+      }
+    });
+  } catch (e) {
+    console.error(e);
+    await prisma.$disconnect();
+    return false;
+  }
+}

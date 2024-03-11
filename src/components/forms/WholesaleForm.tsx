@@ -5,6 +5,7 @@ import Input from '../inputs/Input';
 import TextArea from '../inputs/TextArea';
 import FormWrapper from './FormWrapper';
 import { createWholesaleInterest } from '@/actions/prisma';
+import { sendWholesaleFormNotification } from '@/actions/nodemailer';
 
 export default function WholesaleForm() {
   const [submitting, setSubmitting] = useState(false);
@@ -31,6 +32,14 @@ export default function WholesaleForm() {
     );
 
     if (success) {
+      await sendWholesaleFormNotification(
+        formState.firstName.trim(),
+        formState.lastName.trim(),
+        formState.email.trim().toLowerCase(),
+        formState.phone.trim(),
+        formState.message.trim(),
+        formState.businessName.trim()
+      );
       alert('Thank you for your interest! We will be in touch soon.');
       setFormState({
         firstName: '',
