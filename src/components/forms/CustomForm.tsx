@@ -44,8 +44,10 @@ export default function CustomForm() {
         email: '',
         message: ''
       });
+      setSubmitting(false);
     } else {
       alert('Form Submission Failed, please try again');
+      setSubmitting(false);
     }
   }
 

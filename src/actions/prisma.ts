@@ -265,6 +265,8 @@ export async function createCustomForm(
         message: message.trim()
       }
     });
+    await prisma.$disconnect();
+    return true;
   } catch (e) {
     console.error(e);
     await prisma.$disconnect();
