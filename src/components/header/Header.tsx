@@ -1,8 +1,8 @@
 import { Oleo_Script_Swash_Caps } from 'next/font/google';
 import Link from 'next/link';
 import { FaBookOpen, FaSoap, FaWarehouse } from 'react-icons/fa';
-import { IoHome, IoMail, IoStorefront } from 'react-icons/io5';
-import { CartButton, CartButtonMobile } from './CartButton';
+import { IoMail, IoStorefront } from 'react-icons/io5';
+import { CartButton } from './CartButton';
 import CartFlyout from '@/app/cart/CartFlyout';
 
 const oleo = Oleo_Script_Swash_Caps({ weight: '400', subsets: ['latin'] });
@@ -16,10 +16,6 @@ export default function Header() {
           <Logo />
         </Link>
         <div className='bg-mint/85 flex w-full items-center justify-between rounded-lg px-3 py-4 backdrop-blur-md md:w-fit md:justify-center md:gap-8'>
-          <HeaderLink href='/' additionalClasses='md:hidden'>
-            <IoHome className='h-6 w-6' />
-            <p className='text-xs md:text-sm'>Home</p>
-          </HeaderLink>
           <HeaderLink href='/contact'>
             <IoMail className='h-6 w-6' />
             <p className='text-xs md:text-sm'>Contact</p>
@@ -42,7 +38,6 @@ export default function Header() {
             <IoStorefront className='h-6 w-6' />
             <p className='text-xs md:text-sm'>Shop</p>
           </HeaderLink>
-          <CartButtonMobile />
         </div>
         <CartButton />
       </nav>
