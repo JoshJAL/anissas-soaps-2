@@ -1,15 +1,12 @@
 import './globals.css';
 
-import Footer from '@/components/footer/Footer';
-import { CartButtonMobile } from '@/components/header/CartButton';
-import Header from '@/components/header/Header';
-import type { Metadata } from 'next';
-import { Inter, Oleo_Script_Swash_Caps } from 'next/font/google';
 import Link from 'next/link';
-import './globals.css';
 import Loading from './loading';
+import Footer from '@/components/footer/Footer';
+import Header from '@/components/header/Header';
 
-import { Inter } from 'next/font/google';
+import { Inter, Oleo_Script_Swash_Caps } from 'next/font/google';
+import { CartButtonMobile } from '@/components/header/CartButton';
 import { Suspense } from 'react';
 
 import type { Metadata } from 'next';
