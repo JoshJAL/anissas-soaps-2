@@ -1,14 +1,16 @@
 'use client';
 
+import Select from './inputs/Select';
+
+import { addItemToCart, createCart } from '@/actions/turso/cart';
 import { useCartStore } from '@/utils/cartStore';
 import { createDollarAmount } from '@/utils/createDollarAmount';
-import type { Inventory } from '@prisma/client';
 import { Oleo_Script_Swash_Caps } from 'next/font/google';
 import { useState } from 'react';
 import { FaMinus, FaPlus } from 'react-icons/fa';
-import Select from './inputs/Select';
-import { addItemToCart, createCart } from '@/actions/prisma';
-import { CartItem } from '@/types/cartItem';
+
+import type { CartItem } from '@/types/cartItem';
+import type { Inventory } from '@/types/product';
 
 const oleo = Oleo_Script_Swash_Caps({ weight: '400', subsets: ['latin'] });
 
@@ -37,7 +39,7 @@ export default function AddToCart({ product, mainImage }: { product: Inventory; 
       itemId: product.id,
       itemImage: mainImage,
       itemName: product.name,
-      itemPrice: product.price,
+      itemPrice: product.price.toString(),
       itemScent: scent,
       quantity
     };

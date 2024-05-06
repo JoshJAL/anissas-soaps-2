@@ -1,17 +1,23 @@
-import { sendConfirmationEmail } from '@/actions/nodemailer';
-import { createCustomer, createOrder, getCustomerByEmail, getProductMainImage, getProducts } from '@/actions/prisma';
 import ClearCart from '@/components/ClearCart';
 import WhoWeAre from '@/components/WhoWeAre';
 import WholesaleSection from '@/components/WholesaleSection';
 import TestimonialSlider from '@/components/sliders/ItemCardSlider';
-import { ItemCard } from '@/types/itemCard';
-import { redirect } from 'next/navigation';
 import Stripe from 'stripe';
+
+import { sendConfirmationEmail } from '@/actions/nodemailer';
+import { createCustomer, getCustomerByEmail } from '@/actions/turso/customer';
+import { getProductMainImage, getProducts } from '@/actions/turso/inventory';
+import { createOrder } from '@/actions/turso/orders';
+import { redirect } from 'next/navigation';
+
+import type { ItemCard } from '@/types/itemCard';
 
 const stripe = new Stripe(process.env.STRIPE_TEST_SECRET_KEY!, {
   typescript: true,
   apiVersion: '2023-10-16'
 });
+
+export const dynamic = 'force-dynamic';
 
 export default async function Home({
   searchParams
@@ -56,6 +62,7 @@ export default async function Home({
 
   const itemCards: ItemCard[] = [];
   const products = await getProducts();
+  console.log(products);
 
   for (let i = 0; i < products!.length; i++) {
     const prod = products![i];
@@ -63,7 +70,7 @@ export default async function Home({
     const mainImageObj = mainImage![0];
     const itemCardObj = {
       name: prod.name,
-      price: prod.price,
+      price: prod.price.toString(),
       imgSrc: mainImageObj.url,
       href: `/shop/${prod.id}`
     };

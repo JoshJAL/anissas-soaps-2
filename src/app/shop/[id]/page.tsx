@@ -1,6 +1,7 @@
-import { getProductById, getProductImages } from '@/actions/prisma';
 import AddToCart from '@/components/AddToCart';
 import ImageSlider from '@/components/sliders/ImageSlider';
+
+import { getProductById, getProductImages } from '@/actions/turso/inventory';
 import { Oleo_Script_Swash_Caps } from 'next/font/google';
 
 const oleo = Oleo_Script_Swash_Caps({ weight: '400', subsets: ['latin'] });

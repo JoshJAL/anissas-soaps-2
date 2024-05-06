@@ -1,6 +1,8 @@
-export const dynamic = 'force-dynamic';
-import { getProductMainImage, getProducts } from '@/actions/prisma';
 import ProductCard from '@/components/ProductCard';
+
+import { getProductMainImage, getProducts } from '@/actions/turso/inventory';
+
+export const dynamic = 'force-dynamic';
 
 export default async function Page() {
   const products = await getProducts();
@@ -23,7 +25,15 @@ export default async function Page() {
   return (
     <div className='grid md:grid-cols-2 gap-5'>
       {items.map((item) => {
-        return <ProductCard price={item.price} href={item.href} key={item.id} name={item.name} imgSrc={item.imgSrc} />;
+        return (
+          <ProductCard
+            price={item.price.toString()}
+            href={item.href}
+            key={item.id}
+            name={item.name}
+            imgSrc={item.imgSrc}
+          />
+        );
       })}
     </div>
   );

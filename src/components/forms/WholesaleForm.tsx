@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
 import Input from '../inputs/Input';
 import TextArea from '../inputs/TextArea';
 import FormWrapper from './FormWrapper';
-import { createWholesaleInterest } from '@/actions/prisma';
+
 import { sendWholesaleFormNotification } from '@/actions/nodemailer';
+import { createWholesaleInterest } from '@/actions/turso/customer';
+import { useState } from 'react';
 
 export default function WholesaleForm() {
   const [submitting, setSubmitting] = useState(false);

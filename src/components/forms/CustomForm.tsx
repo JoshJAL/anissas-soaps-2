@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
 import Input from '../inputs/Input';
 import TextArea from '../inputs/TextArea';
 import FormWrapper from './FormWrapper';
-import { createCustomForm } from '@/actions/prisma';
+
 import { sendCustomFormNotification } from '@/actions/nodemailer';
+import { createCustomForm } from '@/actions/turso/customer';
+import { useState } from 'react';
 
 export default function CustomForm() {
   const [submitting, setSubmitting] = useState(false);

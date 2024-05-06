@@ -1,6 +1,6 @@
 'use client';
 
-import { clearCart } from '@/actions/prisma';
+import { clearCart } from '@/actions/turso/cart';
 import { useEffect } from 'react';
 
 export default function ClearCart({ orderComplete }: { orderComplete: string }) {

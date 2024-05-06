@@ -1,11 +1,12 @@
 'use client';
 
-import Link from 'next/link';
+import './image-slider.css';
+
 import { TouchEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { LuArrowBigLeft, LuArrowBigRight } from 'react-icons/lu';
 import { TbCircleDot } from 'react-icons/tb';
-import './image-slider.css';
-import { InventoryImages } from '@prisma/client';
+
+import type { InventoryImages } from '@/types/inventoryImages';
 
 type ImageSliderProps = {
   images: InventoryImages[];

@@ -1,14 +1,16 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+
+import { getCartById, removeCartItem } from '@/actions/turso/cart';
+import { useCartStore } from '@/utils/cartStore';
 import { createDollarAmount } from '@/utils/createDollarAmount';
 import { Dialog, Transition } from '@headlessui/react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
-import { useCartStore } from '@/utils/cartStore';
+
 import type { CartItem } from '@/types/cartItem';
-import { getCartById, removeCartItem } from '@/actions/prisma';
 
 export default function CartFlyout() {
   const { cartOpen, setCartOpen } = useCartStore();
