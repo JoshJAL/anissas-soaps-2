@@ -1,6 +1,5 @@
 import { sql } from 'drizzle-orm';
 import { blob, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
-import { customers } from './customers';
 
 type Item = {
   name: string;
