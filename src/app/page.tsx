@@ -62,7 +62,6 @@ export default async function Home({
 
   const itemCards: ItemCard[] = [];
   const products = await getProducts();
-  console.log(products);
 
   for (let i = 0; i < products!.length; i++) {
     const prod = products![i];
