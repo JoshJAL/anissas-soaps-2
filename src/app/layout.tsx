@@ -17,7 +17,10 @@ const oleo = Oleo_Script_Swash_Caps({ weight: '400', subsets: ['latin'] });
 export const metadata: Metadata = {
   metadataBase: new URL('http://www.anissasoaps.com'),
   title: "Anissaa's Soaps",
-  description: 'Organic, hand-made soaps for any occasion!'
+  description: 'Organic, hand-made soaps for any occasion!',
+  icons: {
+    icon: '/favicon.ico'
+  }
 };
 
 export default function RootLayout({
