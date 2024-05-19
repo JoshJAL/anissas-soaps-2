@@ -15,8 +15,14 @@ export async function sendConfirmationEmail(customerEmail: string) {
 
     const mail_configs = {
       to: customerEmail,
+      bcc: 'anissassoaps@gmail.com, anissa@anissasoaps.com',
       subject: "Anissa's Soaps Order Confirmation",
-      html: `<h1>Thank you for your order!</h1>`
+      html: `<h1>Thank you for your order!</h1>
+<p>We are working hard on your order and will give you updates every step of the way!</p>
+<p>Have a wonderful day and thank you for choosing Anissa's Soaps!</p>
+<p>Sincerely,</p>
+<p>Anissa</p>
+`
     };
 
     transporter.sendMail(mail_configs, function (error, info) {
